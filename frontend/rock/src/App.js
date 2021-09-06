@@ -6,6 +6,7 @@ import {
   SignedOut,
   RedirectToSignIn,
   UserButton,
+  useSession,
   useUser,
 } from "@clerk/clerk-react";
 
@@ -13,21 +14,23 @@ const frontendApi = process.env.REACT_APP_CLERK_FRONTEND_API;
 
 function Hello() {
   const { firstName } = useUser();
+  const { getToken } = useSession();
   const [instruments, setInstruments] = React.useState([]);
 
   React.useEffect(() => {
     async function loadInstruments() {
+      const token = await getToken();
       try {
         const [jazzRes, rockRes] = await Promise.all([
           fetch("http://localhost:4000/api", {
-            // Use HTTP Authorization header to remove `credentials: "include"`
-            // and reduce the required CORS configuration on the backend
-            credentials: "include",
+            headers: {
+              Authorization: token,
+            },
           }).then((res) => res.json()),
           fetch("http://localhost:4001/api", {
-            // Use HTTP Authorization header to remove `credentials: "include"`
-            // and reduce the required CORS configuration on the backend
-            credentials: "include",
+            headers: {
+              Authorization: token,
+            },
           }).then((res) => res.json()),
         ]);
 
@@ -53,7 +56,8 @@ function Hello() {
 
 function App() {
   return (
-    <ClerkProvider frontendApi={frontendApi} authVersion={2}>
+    // Ignore authVersion and polling feature flags. The upgraded auth experience will be in GA nextweek.
+    <ClerkProvider frontendApi={frontendApi} authVersion={2} polling={false}>
       <div className="App">
         <h1>Rock 🎸</h1>
         <SignedIn>

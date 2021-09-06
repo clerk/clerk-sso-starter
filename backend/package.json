@@ -3,12 +3,12 @@
   "version": "0.1.0",
   "private": true,
   "dependencies": {
-    "@clerk/clerk-sdk-node": "latest",
+    "@clerk/clerk-sdk-node": "clerkinc/clerk-sdk-node#auth-v2-middleware-2",
     "cors": "^2.8.5",
     "express": "latest"
   },
   "scripts": {
-    "start:jazz": "CLERK_API_KEY=test_cQPp0L3KLNhHLr3A7GvJBk1jkJ5QAt5tRQ node jazz.js",
-    "start:rock": "CLERK_API_KEY=test_AEc7qhJ3oCDBt4HSVVU6tSdBPPuCVAL77V node rock.js"
+    "start:jazz": "CLERK_LOGGING=true CLERK_API_KEY=test_cQPp0L3KLNhHLr3A7GvJBk1jkJ5QAt5tRQ node --inspect jazz.js",
+    "start:rock": "CLERK_LOGGING=true CLERK_API_KEY=test_AEc7qhJ3oCDBt4HSVVU6tSdBPPuCVAL77V node rock.js"
   }
 }
