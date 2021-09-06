@@ -20,9 +20,13 @@ function Hello() {
       try {
         const [jazzRes, rockRes] = await Promise.all([
           fetch("http://localhost:4000/api", {
+            // Use HTTP Authorization header to remove `credentials: "include"`
+            // and reduce the required CORS configuration on the backend
             credentials: "include",
           }).then((res) => res.json()),
           fetch("http://localhost:4001/api", {
+            // Use HTTP Authorization header to remove `credentials: "include"`
+            // and reduce the required CORS configuration on the backend
             credentials: "include",
           }).then((res) => res.json()),
         ]);
