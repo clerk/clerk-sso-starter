@@ -56,8 +56,7 @@ function Hello() {
 
 function App() {
   return (
-    // Ignore authVersion and polling feature flags. The upgraded auth experience will be in GA nextweek.
-    <ClerkProvider frontendApi={frontendApi} authVersion={2} polling={false}>
+    <ClerkProvider frontendApi={frontendApi}>
       <div className="App">
         <h1>Rock 🎸</h1>
         <SignedIn>
