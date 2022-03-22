@@ -6,7 +6,7 @@ import {
   SignedOut,
   RedirectToSignIn,
   UserButton,
-  useSession,
+  useAuth,
   useUser,
 } from "@clerk/clerk-react";
 
@@ -14,7 +14,7 @@ const frontendApi = process.env.REACT_APP_CLERK_FRONTEND_API;
 
 function Hello() {
   const { firstName } = useUser();
-  const { getToken } = useSession();
+  const { getToken } = useAuth();
   const [instruments, setInstruments] = React.useState([]);
 
   React.useEffect(() => {

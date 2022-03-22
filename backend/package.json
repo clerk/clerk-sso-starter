@@ -3,7 +3,7 @@
   "version": "0.1.0",
   "private": true,
   "dependencies": {
-    "@clerk/clerk-sdk-node": "^2.0.2",
+    "@clerk/clerk-sdk-node": "next",
     "cors": "^2.8.5",
     "express": "latest"
   },
